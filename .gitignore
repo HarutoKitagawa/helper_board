@@ -1,0 +1,13 @@
+helper_board
+
+helper_board_app/__pycache__
+
+helper_board_app/migrations
+
+users/__pycache__
+
+users/migrations/__pycache__
+
+users/migrations/__init__.py
+
+db.sqlite3

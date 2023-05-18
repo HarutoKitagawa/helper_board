@@ -1,0 +1,47 @@
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>九大生専用 助っ人掲示板</title>
+        <meta name="description" content="九州大学の学生が助け合うためのプラットフォーム">
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'helper_board_app:index' %}">九大生用！助っ人掲示板</a>
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+            <li class="nav-item">
+                <p class="navbar-text">ユーザー: {{ user.username }}</p>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'helper_board_app:user_page' user.id %}">マイページ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:logout' %}">ログアウト</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:login' %}">ログイン</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:register' %}"><strong>ユーザー登録</strong></a>
+            </li>
+        {% endif %}
+    </ul>
+    </div>
+</nav>
+<main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header%}
+    </div>
+    <div>
+        {% block content %}{% endblock content %}
+    </div>
+</main>
+</body>
+</html>
